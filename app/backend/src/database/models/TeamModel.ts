@@ -19,7 +19,6 @@ Team.init({
     allowNull: false,
   },
 }, {
-  // ... Outras configs
   underscored: true,
   sequelize: db,
   // modelName: 'users',
