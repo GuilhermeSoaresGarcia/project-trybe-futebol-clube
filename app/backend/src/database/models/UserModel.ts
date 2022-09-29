@@ -7,7 +7,7 @@ export default class User extends Model {
   public username: string;
   public role: string;
   public email: string;
-  public password: string;  
+  public password: string;
 }
 
 User.init({
@@ -31,7 +31,7 @@ User.init({
   password: {
     type: DataTypes.STRING,
     allowNull: false,
-  }
+  },
 }, {
   // ... Outras configs
   // underscored: true,
@@ -42,7 +42,7 @@ User.init({
 });
 
 /**
-  * `Workaround` para aplicar as associations em TS: 
+  * `Workaround` para aplicar as associations em TS:
   * Associations 1:N devem ficar em uma das instâncias de modelo
   * */
 
