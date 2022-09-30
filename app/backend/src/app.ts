@@ -1,4 +1,6 @@
 import * as express from 'express';
+import UserController from './controllers/UserControllers';
+import Token from './helpers/Token';
 
 class App {
   public app: express.Express;
@@ -10,9 +12,20 @@ class App {
 
     // Não remover essa rota
     this.app.get('/', (req, res) => res.json({ ok: true }));
+    this.app.post('/login', async (req, res) => {
+      const { email, password } = req.body;
+      const { code, message } = await UserController.login(email, password);
+      res.status(code).json(message);
+    });
+
+    this.app.get('/login/validate', Token.validateToken, async (req, res) => {
+      const { id } = req.body.user;
+      const { code, message } = await UserController.getRole(id) as any;
+      res.status(code).json(message);
+    });
   }
 
-  private config():void {
+  private config(): void {
     const accessControl: express.RequestHandler = (_req, res, next) => {
       res.header('Access-Control-Allow-Origin', '*');
       res.header('Access-Control-Allow-Methods', 'GET,POST,DELETE,OPTIONS,PUT,PATCH');
@@ -24,7 +37,7 @@ class App {
     this.app.use(accessControl);
   }
 
-  public start(PORT: string | number):void {
+  public start(PORT: string | number): void {
     this.app.listen(PORT, () => console.log(`Running on port ${PORT}`));
   }
 }
