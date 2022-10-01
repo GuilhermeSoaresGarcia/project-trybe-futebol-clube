@@ -2,9 +2,14 @@ import * as jwt from 'jsonwebtoken';
 import 'dotenv/config';
 import { Request, Response, NextFunction } from 'express';
 
+interface IToken {
+  id: number;
+  username: string;
+}
+
 export default class Token {
-  static generateToken(data: any) {
-    const { id, username} = data;
+  static generateToken(data: IToken) {
+    const { id, username } = data;
     const payload = {
       id,
       username,
@@ -17,7 +22,7 @@ export default class Token {
   }
 
   static validateToken = (req: Request, res: Response, next: NextFunction) => {
-    const authorization = req.headers.authorization as any;
+    const authorization = req.headers.authorization as string;
     if (!authorization) return res.status(401).json({ message: 'Token not found' });
     try {
       const user = jwt.verify(authorization, process.env.JWT_SECRET as string);

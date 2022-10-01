@@ -20,7 +20,7 @@ class App {
 
     this.app.get('/login/validate', Token.validateToken, async (req, res) => {
       const { id } = req.body.user;
-      const { code, message } = await UserController.getRole(id) as any;
+      const { code, message } = await UserController.getRole(id);
       res.status(code).json(message);
     });
   }

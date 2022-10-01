@@ -6,7 +6,7 @@ export default class UserController {
     return result;
   }
 
-  static async getRole(id: number): Promise<object> {
+  static async getRole(id: number) {
     const result = await UserServices.getRole(id);
     return result;
   }
