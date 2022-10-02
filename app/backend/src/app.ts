@@ -1,7 +1,6 @@
 import * as express from 'express';
-import UserController from './controllers/UserControllers';
-import TeamController from './controllers/TeamControllers';
-import Token from './helpers/Token';
+import LoginRoutes from './routes/LoginRoutes';
+import TeamsRoutes from './routes/TeamsRoutes';
 
 class App {
   public app: express.Express;
@@ -12,24 +11,9 @@ class App {
     this.config();
 
     // Não remover essa rota
-    this.app.get('/', (req, res) => res.json({ ok: true }));
-
-    this.app.post('/login', async (req, res) => {
-      const { email, password } = req.body;
-      const { code, message } = await UserController.login(email, password);
-      res.status(code).json(message);
-    });
-
-    this.app.get('/login/validate', Token.validateToken, async (req, res) => {
-      const { id } = req.body.user;
-      const { code, message } = await UserController.getRole(id);
-      res.status(code).json(message);
-    });
-
-    this.app.get('/teams', async (req, res) => {
-      const { code, message } = await TeamController.getAllTeams();
-      res.status(code).json(message);
-    });
+    this.app.get('/', (_req, res) => res.json({ ok: true }));
+    this.app.use(LoginRoutes);
+    this.app.use(TeamsRoutes);
   }
 
   private config(): void {
