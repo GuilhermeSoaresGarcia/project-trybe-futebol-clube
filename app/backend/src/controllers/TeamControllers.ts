@@ -5,4 +5,9 @@ export default class TeamController {
     const result = await TeamServices.getAllTeams();
     return result;
   }
+
+  static async getById(id: number) {
+    const result = await TeamServices.getById(id);
+    return result;
+  }
 }
