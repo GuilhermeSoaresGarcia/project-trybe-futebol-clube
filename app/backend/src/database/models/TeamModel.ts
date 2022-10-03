@@ -3,7 +3,7 @@ import db from '.';
 import Match from './MatchModel';
 
 export default class Team extends Model {
-  public id: number;
+  public id?: number;
   public teamName: string;
 }
 

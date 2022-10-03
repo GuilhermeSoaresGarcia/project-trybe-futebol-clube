@@ -3,7 +3,7 @@ import db from '.';
 // import OtherModel from './OtherModel';
 
 export default class Match extends Model {
-  public id: number;
+  public id?: number;
   public homeTeam: number;
   public homeTeamGoals: number;
   public awayTeam: number;
@@ -35,6 +35,7 @@ Match.init({ // init: método estático
   },
   inProgress: {
     type: DataTypes.BOOLEAN,
+    defaultValue: true,
     allowNull: false,
   },
 }, {
