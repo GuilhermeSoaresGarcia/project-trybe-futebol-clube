@@ -29,7 +29,7 @@ export default class Token {
       req.body.user = user;
       next();
     } catch (err) {
-      return res.status(401).json({ message: 'Expired or invalid token' });
+      return res.status(401).json({ message: 'Token must be a valid token' });
     }
   };
 }
