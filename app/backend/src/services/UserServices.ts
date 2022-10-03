@@ -1,11 +1,7 @@
 import Token from '../helpers/Token';
 import User from '../database/models/UserModel';
 import Bcript from '../helpers/Bcrypt';
-
-interface IUserServicesResponse {
-  code: number;
-  message: object;
-}
+import IUserServicesResponse from '../interfaces/UserInterfaces';
 
 export default class UserServices {
   static validateEmail(value: string): RegExpMatchArray | IUserServicesResponse {
