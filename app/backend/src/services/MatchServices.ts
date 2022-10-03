@@ -1,3 +1,4 @@
+import Team from '../database/models/TeamModel';
 import Match from '../database/models/MatchModel';
 import INewMatch from '../interfaces/MatchInterfaces';
 
@@ -42,13 +43,18 @@ export default class MatchServices {
   }
 
   static async createNewMatch(data: INewMatch) {
-    const {
-      homeTeam,
-      homeTeamGoals,
-      awayTeam,
-      awayTeamGoals,
-      inProgress,
-    } = data;
+    const existingTeams = await Team.findAll(
+      {
+        where:
+          { id: [data.awayTeam, data.homeTeam] },
+      },
+    );
+
+    if (existingTeams.length < 2) {
+      return { code: 404, message: { message: 'There is no team with such id!' } };
+    }
+
+    const { homeTeam, homeTeamGoals, awayTeam, awayTeamGoals, inProgress } = data;
     const result = await Match.create({
       homeTeam,
       homeTeamGoals,
