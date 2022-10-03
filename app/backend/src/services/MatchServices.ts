@@ -1,6 +1,6 @@
 import Match from '../database/models/MatchModel';
 
-export default class UserServices {
+export default class MatchServices {
   static async getAllMatches() {
     const result = await Match.findAll(
       {
