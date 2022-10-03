@@ -5,4 +5,9 @@ export default class TeamController {
     const result = await MatchServices.getAllMatches();
     return result;
   }
+
+  static async getMatchesInProgress(value: string) {
+    const result = await MatchServices.getMatchesInProgress(value);
+    return result;
+  }
 }
