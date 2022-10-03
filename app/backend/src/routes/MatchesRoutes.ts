@@ -21,4 +21,10 @@ routes.post('/matches', Token.validateToken, async (req, res) => {
   return res.status(code).json(message);
 });
 
+routes.patch('/matches/:id/finish', async (req, res) => {
+  const { id } = req.params;
+  const { code, message } = await MatchController.endAMatch(id as unknown as number);
+  return res.status(code).json(message);
+});
+
 export default routes;

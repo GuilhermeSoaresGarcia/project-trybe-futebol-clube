@@ -64,4 +64,12 @@ export default class MatchServices {
     });
     return { code: 201, message: result };
   }
+
+  static async endAMatch(id: number) {
+    await Match.update(
+      { inProgress: false },
+      { where: { id } },
+    );
+    return { code: 200, message: { message: 'Finished' } };
+  }
 }

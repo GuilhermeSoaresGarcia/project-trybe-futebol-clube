@@ -23,4 +23,9 @@ export default class MatchController {
     const result = await MatchServices.createNewMatch(data);
     return result;
   }
+
+  static async endAMatch(id: number) {
+    const result = await MatchServices.endAMatch(id);
+    return result;
+  }
 }
