@@ -1,4 +1,5 @@
 import Match from '../database/models/MatchModel';
+import INewMatch from '../interfaces/MatchInterfaces';
 
 export default class MatchServices {
   static async getAllMatches() {
@@ -38,5 +39,23 @@ export default class MatchServices {
       },
     );
     return { code: 200, message: result };
+  }
+
+  static async createNewMatch(data: INewMatch) {
+    const {
+      homeTeam,
+      homeTeamGoals,
+      awayTeam,
+      awayTeamGoals,
+      inProgress,
+    } = data;
+    const result = await Match.create({
+      homeTeam,
+      homeTeamGoals,
+      awayTeam,
+      awayTeamGoals,
+      inProgress,
+    });
+    return { code: 201, message: result };
   }
 }
