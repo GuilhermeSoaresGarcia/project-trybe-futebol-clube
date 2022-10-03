@@ -8,7 +8,7 @@ export default class Match extends Model {
   public homeTeamGoals: number;
   public awayTeam: number;
   public awayTeamGoals: number;
-  public inProgress: number;
+  public inProgress: boolean;
 }
 
 Match.init({ // init: método estático
@@ -34,7 +34,7 @@ Match.init({ // init: método estático
     allowNull: false,
   },
   inProgress: {
-    type: DataTypes.INTEGER,
+    type: DataTypes.BOOLEAN,
     allowNull: false,
   },
 }, {
