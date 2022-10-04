@@ -74,16 +74,16 @@ export default class MatchServices {
   }
 
   static async editAMatch(data: IEditMatch) {
+    const { id, homeTeamGoals, awayTeamGoals } = data;
     await Match.update(
       {
-        homeTeamGoals: data.homeTeamGoals,
-        awayTeamGoals: data.awayTeamGoals,
+        homeTeamGoals,
+        awayTeamGoals,
       },
-      { where: { id: data.id } },
+      { where: { id } },
     );
     return {
-      code: 200,
-      message: { homeTeamGoals: data.homeTeamGoals, awayTeamGoals: data.awayTeamGoals },
+      code: 200, message: { homeTeamGoals, awayTeamGoals },
     };
   }
 }
