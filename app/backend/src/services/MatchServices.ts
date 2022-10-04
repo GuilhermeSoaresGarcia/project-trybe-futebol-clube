@@ -1,6 +1,6 @@
 import Team from '../database/models/TeamModel';
 import Match from '../database/models/MatchModel';
-import INewMatch from '../interfaces/MatchInterfaces';
+import { INewMatch, IEditMatch } from '../interfaces/MatchInterfaces';
 
 export default class MatchServices {
   static async getAllMatches() {
@@ -71,5 +71,19 @@ export default class MatchServices {
       { where: { id } },
     );
     return { code: 200, message: { message: 'Finished' } };
+  }
+
+  static async editAMatch(data: IEditMatch) {
+    await Match.update(
+      {
+        homeTeamGoals: data.homeTeamGoals,
+        awayTeamGoals: data.awayTeamGoals,
+      },
+      { where: { id: data.id } },
+    );
+    return {
+      code: 200,
+      message: { homeTeamGoals: data.homeTeamGoals, awayTeamGoals: data.awayTeamGoals },
+    };
   }
 }

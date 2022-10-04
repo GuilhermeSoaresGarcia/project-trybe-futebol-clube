@@ -1,5 +1,5 @@
 import MatchServices from '../services/MatchServices';
-import INewMatch from '../interfaces/MatchInterfaces';
+import { INewMatch, IEditMatch } from '../interfaces/MatchInterfaces';
 
 export default class MatchController {
   static async getAllMatches() {
@@ -26,6 +26,11 @@ export default class MatchController {
 
   static async endAMatch(id: number) {
     const result = await MatchServices.endAMatch(id);
+    return result;
+  }
+
+  static async editAMatch(data: IEditMatch) {
+    const result = await MatchServices.editAMatch(data);
     return result;
   }
 }
