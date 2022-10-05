@@ -5,6 +5,7 @@ import Match from './MatchModel';
 export default class Team extends Model {
   public id?: number;
   public teamName: string;
+  public homeTeam?: Array<Match>;
 }
 
 Team.init({
@@ -32,5 +33,5 @@ Team.init({
 
 Match.belongsTo(Team, { foreignKey: 'homeTeam', as: 'teamHome' });
 Match.belongsTo(Team, { foreignKey: 'awayTeam', as: 'teamAway' });
-// Team.hasMany(Match, { foreignKey: 'id', as: 'teamHome' });
-// Team.hasMany(Match, { foreignKey: 'id', as: 'teamAway' });
+Team.hasMany(Match, { foreignKey: 'homeTeam', as: 'homeTeam' });
+Team.hasMany(Match, { foreignKey: 'awayTeam', as: 'awayTeam' });
