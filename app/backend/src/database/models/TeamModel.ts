@@ -6,6 +6,7 @@ export default class Team extends Model {
   public id?: number;
   public teamName: string;
   public homeTeam?: Array<Match>;
+  public awayTeam?: Array<Match>;
 }
 
 Team.init({
