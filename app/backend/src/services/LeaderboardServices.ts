@@ -6,20 +6,20 @@ export default class LeaderboardServices {
   private static modelledTeams = async () => {
     const awayTeams = (await LeaderboardAwayServices.getAll()).message;
     const homeTeams = (await LeaderboardHomeServices.getAll()).message;
-    return homeTeams.map((team) => {
-      const away = awayTeams.find((awayTeamName) => awayTeamName.name === team.name) as IBoard;
+    return homeTeams.map((home) => {
+      const away = awayTeams.find((team) => team.name === home.name) as IBoard;
       return {
-        name: team.name,
-        totalPoints: team.totalPoints + away.totalPoints,
-        totalGames: team.totalGames + away.totalGames,
-        totalVictories: team.totalVictories + away.totalVictories,
-        totalDraws: team.totalDraws as number + away.totalDraws,
-        totalLosses: team.totalLosses as number + away.totalLosses,
-        goalsFavor: team.goalsFavor + away.goalsFavor,
-        goalsOwn: team.goalsOwn + away.goalsOwn,
-        goalsBalance: team.goalsBalance + away.goalsBalance,
-        efficiency: (((team.totalPoints + away.totalPoints)
-          / ((team.totalGames + away.totalGames) * 3)) * 100).toFixed(2),
+        name: home.name,
+        totalPoints: home.totalPoints + away.totalPoints,
+        totalGames: home.totalGames + away.totalGames,
+        totalVictories: home.totalVictories + away.totalVictories,
+        totalDraws: home.totalDraws as number + away.totalDraws,
+        totalLosses: home.totalLosses as number + away.totalLosses,
+        goalsFavor: home.goalsFavor + away.goalsFavor,
+        goalsOwn: home.goalsOwn + away.goalsOwn,
+        goalsBalance: home.goalsBalance + away.goalsBalance,
+        efficiency: (((home.totalPoints + away.totalPoints)
+          / ((home.totalGames + away.totalGames) * 3)) * 100).toFixed(2),
       };
     });
   };
