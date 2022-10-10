@@ -1,16 +1,28 @@
-# 🚧 README em construção 🚧
+# Trybe Futebol Clube Project
 
-<!-- Olá, Tryber!
+# Contexto
 
-Esse é apenas um arquivo inicial para o README do seu projeto.
+Neste projeto, deveria ser implementado o back-end para uma aplicação que mostra uma tabela de um campeonato de futebol, podendo filtrar partidas em andamento e finalizadas, bem como a classificação geral, classificação dos mandantes e dos visitantes. Além disso, a tabela deveria possuir dois perfis de usuário: admin, com o qual poderiam ser adicionadas novas partidas ou editadas partidas em andamento ou encerradas, e user, o qual poderia apenas consultar a tabela.
 
-É essencial que você preencha esse documento por conta própria, ok?
+> Utilização do paradigma de programação orientada a objetos (POO) com o uso do TypeScript;
 
-Não deixe de usar nossas dicas de escrita de README de projetos, e deixe sua criatividade brilhar!
+> Compreensão dos conceitos de herança, abstração, encapsulamento e polimorfismo em POO;
 
-⚠️ IMPORTANTE: você precisa deixar nítido:
-- quais arquivos/pastas foram desenvolvidos por você; 
-- quais arquivos/pastas foram desenvolvidos por outra pessoa estudante;
-- quais arquivos/pastas foram desenvolvidos pela Trybe.
+> Utilização de compositions e interfaces;
 
--->
+> Fixar os princípios da arquitetura SOLID;
+ 
+
+## Tecnologias usadas
+
+> Desenvolvido usando: TypeScript.
+
+## Instalando dependências
+```
+npm install
+```
+
+## Executando aplicação
+```
+npm start
+```
