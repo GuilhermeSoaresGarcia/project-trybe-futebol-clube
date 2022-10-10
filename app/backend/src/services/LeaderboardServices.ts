@@ -1,5 +1,4 @@
-// import Team from '../database/models/TeamModel';
-// import Match from '../database/models/MatchModel';
+import IBoard from '../interfaces/LeaderboardInterfaces';
 import LeaderboardAwayServices from './LeaderboardAwayServices';
 import LeaderboardHomeServices from './LeaderboardHomeServices';
 
@@ -8,14 +7,14 @@ export default class LeaderboardServices {
     const awayTeams = (await LeaderboardAwayServices.getAll()).message;
     const homeTeams = (await LeaderboardHomeServices.getAll()).message;
     return homeTeams.map((team) => {
-      const away = awayTeams.find((awayTeamName) => awayTeamName.name === team.name) as any;
+      const away = awayTeams.find((awayTeamName) => awayTeamName.name === team.name) as IBoard;
       return {
         name: team.name,
         totalPoints: team.totalPoints + away.totalPoints,
         totalGames: team.totalGames + away.totalGames,
         totalVictories: team.totalVictories + away.totalVictories,
-        totalDraws: team.totalDraws + away.totalDraws,
-        totalLosses: team.totalLosses + away.totalLosses,
+        totalDraws: team.totalDraws as number + away.totalDraws,
+        totalLosses: team.totalLosses as number + away.totalLosses,
         goalsFavor: team.goalsFavor + away.goalsFavor,
         goalsOwn: team.goalsOwn + away.goalsOwn,
         goalsBalance: team.goalsBalance + away.goalsBalance,
