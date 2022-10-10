@@ -13,4 +13,9 @@ routes.get('/leaderboard/away', async (_req, res) => {
   res.status(code).json(message);
 });
 
+routes.get('/leaderboard', async (_req, res) => {
+  const { code, message } = await LeaderboardController.getAll();
+  res.status(code).json(message);
+});
+
 export default routes;
